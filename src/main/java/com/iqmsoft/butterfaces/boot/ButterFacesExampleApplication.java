@@ -5,9 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.http.HttpStatus;
 
 import com.iqmsoft.butterfaces.boot.mongo.Admin;
 import com.iqmsoft.butterfaces.boot.mongo.AdminRepository;
@@ -26,14 +30,18 @@ public class ButterFacesExampleApplication implements CommandLineRunner {
 		SpringApplication.run(ButterFacesExampleApplication.class, args);
 	}
 
-	@Override
-	public void run(String... arg0) throws Exception {
 
-		if (adminRepository.count() == 0) {
-			Admin e = new Admin("admin", "password");
-			adminRepository.save(e);
+
+	
+
+		@Override
+		public void run(String... arg0) throws Exception {
+
+			if (adminRepository.count() == 0) {
+				Admin e = new Admin("admin", "password");
+				adminRepository.save(e);
+			}
+
 		}
-
-	}
 
 }
